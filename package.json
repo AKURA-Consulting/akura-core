@@ -1,0 +1,19 @@
+{
+  "name": "akura-core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AKURA CORE - Sistema operativo interno",
+  "scripts": {
+    "build": "node scripts/sync-assets.mjs",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "db:create": "wrangler d1 create akura-core-db",
+    "db:list": "wrangler d1 list",
+    "db:migrate": "wrangler d1 migrations apply akura-core-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply akura-core-db --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.142.0"
+  }
+}

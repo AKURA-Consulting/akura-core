@@ -1,0 +1,18 @@
+name = "akura-core"
+main = "src/worker.js"
+compatibility_date = "2026-09-28"
+
+[vars]
+APP_NAME = "AKURA CORE"
+ENVIRONMENT = "development"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "akura-core-db"
+database_id = "f8ff47b9-84fc-4786-8e99-e4ce36073fdb"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+not_found_handling = "single-page-application"

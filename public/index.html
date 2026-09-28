@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14231f">
+  <title>AKURA CORE</title>
+  <link rel="stylesheet" href="frontend/styles.css">
+  <script type="module" src="frontend/app.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard"><span class="brand-mark">A</span><span>AKURA <b>CORE</b></span></a>
+      <nav id="navigation" aria-label="Navegación principal">
+        <a href="#dashboard" data-route="dashboard" class="nav-link"><span class="nav-icon">⌂</span>Inicio</a>
+        <p class="nav-heading">COMERCIAL</p>
+        <a href="#companies" data-route="companies" class="nav-link"><span class="nav-icon">▦</span>Empresas</a>
+        <a href="#contacts" data-route="contacts" class="nav-link"><span class="nav-icon">♙</span>Contactos</a>
+        <a href="#leads" data-route="leads" class="nav-link"><span class="nav-icon">◉</span>Leads</a>
+        <a href="#opportunities" data-route="opportunities" class="nav-link"><span class="nav-icon">◇</span>Oportunidades</a>
+        <p class="nav-heading">OPERACIONES</p>
+        <a href="#tasks" data-route="tasks" class="nav-link"><span class="nav-icon">✓</span>Tareas</a>
+        <a href="#activities" data-route="activities" class="nav-link"><span class="nav-icon">↗</span>Actividades</a>
+        <p class="nav-heading">INFORMACIÓN</p>
+        <a href="#notes" data-route="notes" class="nav-link"><span class="nav-icon">▤</span>Notas</a>
+      </nav>
+      <div class="sidebar-foot"><span class="online-dot"></span> Núcleo operativo</div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
+        <div class="breadcrumb">AKURA CORE <span>/</span> <b id="current-section">Inicio</b></div>
+        <label class="global-search"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar en AKURA CORE…" autocomplete="off"><kbd>↵</kbd></label>
+      </header>
+      <section class="content" id="app" aria-live="polite"><div class="loading">Cargando AKURA CORE…</div></section>
+      <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    </main>
+  </div>
+  <div class="mobile-scrim" id="mobile-scrim"></div>
+</body>
+</html>
