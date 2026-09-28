@@ -50,6 +50,7 @@ El `database_id` actual está en `wrangler.toml` y se conserva.
 
 ```sh
 npm run build               # Copia los archivos fuente del frontend a public/
+npm run check               # Genera assets y valida el paquete Wrangler sin publicarlo
 npm run dev                 # Sincroniza assets y ejecuta Wrangler localmente
 npm run db:migrate           # Aplica migraciones solo a la D1 local de Wrangler
 npm run db:list              # Lista bases D1 de la cuenta configurada en Wrangler
@@ -68,9 +69,11 @@ npm run deploy               # Despliega Worker y assets a Cloudflare
 
 No se cargan datos demo automáticamente. Los registros creados desde la aplicación se guardan en D1 local.
 
-## Migraciones y deploy futuro
+## Migraciones y despliegue
 
-Las migraciones viven en `migrations/` y se aplican localmente con `npm run db:migrate`. Antes de aplicar una migración remota, revisa el SQL y confirma el destino y el estado de la base. Para un deploy futuro, revisa `wrangler.toml`, ejecuta `npm run build` y luego `npm run deploy` desde un entorno autorizado. Esta implementación no despliega ni aplica migraciones remotas.
+Las migraciones viven en `migrations/` y se aplican localmente con `npm run db:migrate`. Antes de un despliegue, ejecuta `npm run check` y revisa el resultado. Aplica las migraciones remotas solo desde una cuenta autorizada y después de confirmar el destino y revisar el SQL; `npm run deploy` no las aplica automáticamente.
+
+**Bloqueo de producción:** esta versión no implementa autenticación ni autorización. La API permite leer, crear, modificar y eliminar datos; no publiques el Worker en una URL accesible hasta proteger la aplicación con Cloudflare Access (incluyendo todas las rutas API) o implementar autenticación en la aplicación. Si habilitas `workers.dev`, comprueba que esa URL también quede protegida o deshabilitada, ya que una protección configurada solo en un dominio personalizado no cubre necesariamente el subdominio `workers.dev`.
 
 ## API
 

@@ -197,13 +197,13 @@ async function deleteRow(route, id) {
 }
 async function searchAll(query) {
   const sequence = ++searchSequence;
-  setNav("search"); app.innerHTML = `${heading("Búsqueda", `Resultados para “${query}”.`)}<div class="loading">Buscando…</div>`;
+  setNav("search"); app.innerHTML = `${heading("Búsqueda", `Resultados para “${esc(query)}”.`)}<div class="loading">Buscando…</div>`;
   try {
     const results = await Promise.all(Object.keys(modules).map(async (key) => [key, await api(`${key}?search=${encodeURIComponent(query)}`)]));
     if (sequence !== searchSequence || activeRoute !== "search") return;
     const groups = results.filter(([, rows]) => rows.length);
-    app.innerHTML = `${heading("Búsqueda", `Resultados para “${query}”.`)}${groups.length ? `<div class="search-results">${groups.map(([key, rows]) => `<section class="search-group"><h2>${modules[key].title} <span class="muted">(${rows.length})</span></h2>${rows.map((row) => `<div class="search-item" data-search-route="${key}" data-id="${esc(row.id)}"><span>${esc(row.name || row.title || row.subject || [row.first_name,row.last_name].filter(Boolean).join(" "))}</span><span class="muted">${esc(row.email || row.status || row.type || "Abrir →")}</span></div>`).join("")}</section>`).join("")}</div>` : `<div class="empty-state"><b>No encontramos coincidencias</b><span>Prueba con otro nombre, email o estado.</span></div>`}`;
-  } catch (error) { if (sequence === searchSequence && activeRoute === "search") app.innerHTML = `${heading("Búsqueda", `Resultados para “${query}”.`)}<div class="error-state">${esc(error.message)}</div>`; }
+    app.innerHTML = `${heading("Búsqueda", `Resultados para “${esc(query)}”.`)}${groups.length ? `<div class="search-results">${groups.map(([key, rows]) => `<section class="search-group"><h2>${modules[key].title} <span class="muted">(${rows.length})</span></h2>${rows.map((row) => `<div class="search-item" data-search-route="${key}" data-id="${esc(row.id)}"><span>${esc(row.name || row.title || row.subject || [row.first_name,row.last_name].filter(Boolean).join(" "))}</span><span class="muted">${esc(row.email || row.status || row.type || "Abrir →")}</span></div>`).join("")}</section>`).join("")}</div>` : `<div class="empty-state"><b>No encontramos coincidencias</b><span>Prueba con otro nombre, email o estado.</span></div>`}`;
+  } catch (error) { if (sequence === searchSequence && activeRoute === "search") app.innerHTML = `${heading("Búsqueda", `Resultados para “${esc(query)}”.`)}<div class="error-state">${esc(error.message)}</div>`; }
 }
 function routeFromHash() { const route = location.hash.replace(/^#\/?/, "") || "dashboard"; if (route === "dashboard") return dashboard(); if (modules[route]) return loadModule(route); return dashboard(); }
 

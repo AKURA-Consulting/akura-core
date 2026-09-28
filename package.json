@@ -6,6 +6,7 @@
   "description": "AKURA CORE - Sistema operativo interno",
   "scripts": {
     "build": "node scripts/sync-assets.mjs",
+    "check": "npm run build && wrangler deploy --dry-run",
     "dev": "npm run build && wrangler dev",
     "deploy": "npm run build && wrangler deploy",
     "db:create": "wrangler d1 create akura-core-db",
